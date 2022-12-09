@@ -30,6 +30,8 @@ function ModelPageList() {
                         <th>No</th>
                         <th>Nom</th>
                         <th>Description</th>
+                        <th>pUHT</th>
+                        <th>Gamme</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -40,6 +42,8 @@ function ModelPageList() {
                             <td>{ index + 1 }</td>
                             <td>{ model.nom }</td>
                             <td>{ model.description }</td>
+                            <td>{ model.puht }</td>
+                            <td>{ model.gamme }</td>
                             <td>
                                 <Link to={`/edit/${model.id}`} className="button is-small is-info">Edit</Link>
                                 <button onClick={ () => deleteModel(model.id) } className="button is-small is-danger">Delete</button>

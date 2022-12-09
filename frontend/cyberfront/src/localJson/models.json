@@ -2,8 +2,10 @@
   "models": [
     {
       "nom": "Disque bleu",
-      "description": "Un modele bleu",
-      "id": 1
+      "description": "Un modele  ",
+      "id": 1,
+      "puht": "6.5",
+      "gamme": "Basique"
     }
   ]
 }

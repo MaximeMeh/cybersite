@@ -5,15 +5,19 @@ import { useNavigate } from 'react-router-dom';
 const AddModel = () => {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
-    const history = useNavigate();
+    const [puht, setPuht] = useState();
+    const [gamme, setGamme] = useState('');
+    const navigate = useNavigate();
  
     const saveModel = async (e) => {
         e.preventDefault();
         await axios.post(process.env.REACT_APP_URL_MODELS,{
             nom: name,
-            description: desc
+            description: desc,
+            puht: puht,
+            gamme: gamme
         });
-        history("/modele");
+        navigate("/modele");
     }
  
     return (
@@ -38,6 +42,28 @@ const AddModel = () => {
                         placeholder="Description"
                         value={ desc }
                         onChange={ (e) => setDesc(e.target.value) }
+                    />
+                </div>
+
+                <div className="field">
+                    <label className="label">pUHT</label>
+                    <input 
+                        className="input"
+                        type="float"
+                        placeholder="Prix Unitaire Hors Taxe"
+                        value={ puht }
+                        onChange={ (e) => setPuht(e.target.value) }
+                    />
+                </div>
+
+                <div className="field">
+                    <label className="label">Gamme</label>
+                    <input 
+                        className="input"
+                        type="text"
+                        placeholder="Gamme"
+                        value={ gamme }
+                        onChange={ (e) => setGamme(e.target.value) }
                     />
                 </div>
  

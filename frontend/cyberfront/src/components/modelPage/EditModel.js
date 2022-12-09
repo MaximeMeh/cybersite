@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react'
 import axios from "axios";
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
  
 const EditModel = () => {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
-    const history = useHistory();
+    const history = useNavigate();
     const { id } = useParams();
  
     const updateProduct = async (e) => {
         e.preventDefault();
         await axios.patch(process.env.REACT_APP_URL_MODELS+`/${id}`,{
-            name: name,
-            desc: desc
+            nom: name,
+            description: desc
         });
-        history.push("/");
+        history("/modele");
     }
  
     useEffect(() => {
@@ -23,7 +23,7 @@ const EditModel = () => {
  
     const getModelById = async () => {
         const response = await axios.get(process.env.REACT_APP_URL_MODELS+`/${id}`);
-        setName(response.data.name);
+        setName(response.data.nom);
         setDesc(response.data.description);
     }
  
@@ -31,18 +31,18 @@ const EditModel = () => {
         <div>
             <form onSubmit={ updateProduct }>
                 <div className="field">
-                    <label className="label">Title</label>
+                    <label className="label">Nom</label>
                     <input 
                         className="input"
                         type="text"
-                        placeholder="Title"
+                        placeholder="Nom"
                         value={ name }
                         onChange={ (e) => setName(e.target.value) }
                     />
                 </div>
  
                 <div className="field">
-                    <label className="label">Price</label>
+                    <label className="label">Description</label>
                     <input 
                         className="input"
                         type="text"

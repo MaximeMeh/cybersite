@@ -1,26 +1,26 @@
 import { useState } from 'react'
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
  
 const AddModel = () => {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
-    const history = useHistory();
+    const history = useNavigate();
  
     const saveModel = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5000/products',{
-            name: name,
-            desc: desc
+        await axios.post(process.env.REACT_APP_URL_MODELS,{
+            nom: name,
+            description: desc
         });
-        history.push("/");
+        history("/modele");
     }
  
     return (
         <div>
             <form onSubmit={ saveModel }>
                 <div className="field">
-                    <label className="label">Title</label>
+                    <label className="label">Nom</label>
                     <input 
                         className="input"
                         type="text"
@@ -31,7 +31,7 @@ const AddModel = () => {
                 </div>
  
                 <div className="field">
-                    <label className="label">Price</label>
+                    <label className="label">Description</label>
                     <input 
                         className="input"
                         type="text"

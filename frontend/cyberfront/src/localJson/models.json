@@ -1,13 +1,6 @@
 {
   "models": [
     {
-      "nom": "Blue basique",
-      "description": "Un disque de freezbee de couleur bleue basique",
-      "pUHT": 5.5,
-      "gamme": "Basic",
-      "id": 2
-    },
-    {
       "nom": "Rouge basique",
       "description": "Un disque de freezbee de couleur rouge basique",
       "pUHT": 5.5,

@@ -1,6 +1,6 @@
 import './App.css';
 import LoginPage from './components/login-page/LoginPage';
-import ModelPage from '../src/components/modelPage/ModelPage';
+import ModelPageList from './components/modelPage/ModelPageList';
 
 import { Routes, Route } from "react-router-dom";
 
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<LoginPage/>} />
-        <Route path="/modele" element={<ModelPage />} />
+        <Route path="/modele" element={<ModelPageList />} />
       </Routes>
       
     </div>

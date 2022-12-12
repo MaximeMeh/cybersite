@@ -6,8 +6,11 @@ module.exports = (sequelize, Sequelize) => {
       description: {
         type: Sequelize.STRING
       },
-      pUHT: {
+      puht: {
         type: Sequelize.FLOAT
+      },
+      range: {
+        type: Sequelize.STRING
       }
     });
   

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"
 
+
 function ModelPageList() {
 
     const [models, setModels] = useState([]);
+    const [searchInput, setSearchInput] = useState("");
   
     useEffect(() => {
       getModels();
@@ -21,8 +23,26 @@ function ModelPageList() {
       getModels();
     }
 
+    const handleChange = (e) => {
+      e.preventDefault();
+      setSearchInput(e.target.value);
+    };
+    
+    if (searchInput.length > 0) {
+        models.filter((model) => {
+        return model.nom.match(searchInput);
+    });
+    }
+
   return (
     <div>
+      {/* <SearchModel/> */}
+      <input
+        type="search"
+        placeholder="Nom du modèle"
+        onChange={handleChange}
+        value={searchInput} />
+        
             <Link to="/add" className="button is-primary mt-2">Add New</Link>
             <table className="table is-striped is-fullwidth">
                 <thead>
@@ -36,7 +56,8 @@ function ModelPageList() {
                     </tr>
                 </thead>
                 <tbody>
-                    { models.map((model, index) => (
+                    { models.filter(li => li.nom.toLowerCase().includes(searchInput.toLowerCase()))
+                            .map((model, index) => (
                       
                         <tr key={ model.id }>
                             <td>{ index + 1 }</td>

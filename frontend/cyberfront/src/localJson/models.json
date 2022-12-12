@@ -1,9 +1,23 @@
 {
   "models": [
     {
-      "nom": "Disque bleu",
+      "nom": "Disque violet",
       "description": "Un modele  ",
       "id": 1,
+      "puht": "6.5",
+      "gamme": "Basique"
+    },
+    {
+      "nom": "Disque rouge",
+      "description": "Un modele  ",
+      "id": 2,
+      "puht": "6.5",
+      "gamme": "Basique"
+    },
+    {
+      "nom": "Disque noir",
+      "description": "Un modele  ",
+      "id": 3,
       "puht": "6.5",
       "gamme": "Basique"
     }

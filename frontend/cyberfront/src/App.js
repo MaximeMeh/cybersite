@@ -4,6 +4,7 @@ import ModelPageList from './components/modelPage/ModelPageList';
 import AddModel from './components/modelPage/AddModel';
 import EditModel from './components/modelPage/EditModel';
 
+
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -15,7 +16,6 @@ function App() {
         <Route path="/add" element={<AddModel />} />
         <Route path="/edit/:id" element={<EditModel />} />
       </Routes>
-      
     </div>
   );
 }

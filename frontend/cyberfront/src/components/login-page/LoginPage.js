@@ -11,13 +11,14 @@ function LoginPage() {
 
 function handleSubmit(e) {
     e.preventDefault()
-    fetch('http://localhost:8080/login', {
+    fetch(process.env.REACT_APP_URL_USERS, {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify(formData)
     })
     .then(res => res.json())
     .then(data => console.log(data.user))
+    .catch(err => err)
 
 }
 
@@ -30,7 +31,7 @@ function handleChange(e) {
       <Header/>
       <div className="login-wrapper">
 
-      <h1>Connexion</h1>
+      <h2>Connexion</h2>
 
       <form onSubmit={e => handleSubmit(e)}>
           <TextField size="small" label='Email' type='text' placeholder='Email' value={formData.email} name='email' onChange={e => handleChange(e)} ></TextField>

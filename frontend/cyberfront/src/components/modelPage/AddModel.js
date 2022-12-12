@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { Button, TextField } from '@mui/material';
+import Header from '../header/Header';
  
 const AddModel = () => {
     const [name, setName] = useState('');
@@ -22,10 +24,12 @@ const AddModel = () => {
  
     return (
         <div>
+            <Header/>
+            <h2>Ajouter</h2>
             <form onSubmit={ saveModel }>
                 <div className="field">
                     <label className="label">Nom</label>
-                    <input 
+                    <TextField variant='standard' size="small" 
                         className="input"
                         type="text"
                         placeholder="Name"
@@ -36,7 +40,7 @@ const AddModel = () => {
  
                 <div className="field">
                     <label className="label">Description</label>
-                    <input 
+                    <TextField variant='standard' size="small" 
                         className="input"
                         type="text"
                         placeholder="Description"
@@ -47,7 +51,7 @@ const AddModel = () => {
 
                 <div className="field">
                     <label className="label">pUHT</label>
-                    <input 
+                    <TextField variant='standard' size="small" 
                         className="input"
                         type="float"
                         placeholder="Prix Unitaire Hors Taxe"
@@ -57,8 +61,8 @@ const AddModel = () => {
                 </div>
 
                 <div className="field">
-                    <label className="label">Gamme</label>
-                    <input 
+                    <label className="label">Gamme: </label>
+                    <TextField variant='standard' size="small"
                         className="input"
                         type="text"
                         placeholder="Gamme"
@@ -66,9 +70,9 @@ const AddModel = () => {
                         onChange={ (e) => setGamme(e.target.value) }
                     />
                 </div>
- 
+                <br/>
                 <div className="field">
-                    <button className="button is-primary">Save</button>
+                    <Button variant='contained'>Save</Button>
                 </div>
             </form>
         </div>

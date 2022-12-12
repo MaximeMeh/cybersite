@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
+import { Button, TextField } from '@mui/material';
+import Header from '../header/Header';
  
 const EditModel = () => {
     const [name, setName] = useState('');
@@ -35,10 +37,12 @@ const EditModel = () => {
  
     return (
         <div>
+            <Header/>
+            <h2>Éditer</h2>
             <form onSubmit={ updateProduct }>
                 <div className="field">
                     <label className="label">Nom</label>
-                    <input 
+                    <TextField variant='standard' size="small" 
                         className="input"
                         type="text"
                         placeholder="Nom"
@@ -49,7 +53,7 @@ const EditModel = () => {
  
                 <div className="field">
                     <label className="label">Description</label>
-                    <input 
+                    <TextField variant='standard' size="small" 
                         className="input"
                         type="text"
                         placeholder="Description"
@@ -60,7 +64,7 @@ const EditModel = () => {
 
                 <div className="field">
                     <label className="label">pUHT</label>
-                    <input 
+                    <TextField variant='standard' size="small" 
                         className="input"
                         type="float"
                         placeholder="Prix Unitaire Hors Taxe"
@@ -71,7 +75,7 @@ const EditModel = () => {
 
                 <div className="field">
                     <label className="label">Gamme</label>
-                    <input 
+                    <TextField variant='standard' size="small" 
                         className="input"
                         type="text"
                         placeholder="Gamme"
@@ -81,7 +85,7 @@ const EditModel = () => {
                 </div>
  
                 <div className="field">
-                    <button className="button is-primary">Update</button>
+                    <Button variant='contained'>Changer</Button>
                 </div>
             </form>
         </div>

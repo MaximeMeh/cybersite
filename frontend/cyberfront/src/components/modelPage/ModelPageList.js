@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"
+import Header from "../header/Header";
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { Button, TextField  } from "@mui/material";
 
 
 function ModelPageList() {
@@ -36,44 +46,48 @@ function ModelPageList() {
 
   return (
     <div>
-      {/* <SearchModel/> */}
-      <input
+      <Header/>
+      <br/>
+      <TextField 
+        variant="standard"
         type="search"
         placeholder="Nom du modèle"
         onChange={handleChange}
         value={searchInput} />
         
-            <Link to="/add" className="button is-primary mt-2">Add New</Link>
-            <table className="table is-striped is-fullwidth">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nom</th>
-                        <th>Description</th>
-                        <th>pUHT</th>
-                        <th>Gamme</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { models.filter(li => li.nom.toLowerCase().includes(searchInput.toLowerCase()))
-                            .map((model, index) => (
+        <Button variant="contained"><Link to="/add" className="button is-primary mt-2">Add New</Link></Button>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <TableHead>
+                      <TableRow className="bold-row">
+                          <TableCell>No</TableCell>
+                          <TableCell>Nom</TableCell>
+                          <TableCell>Description</TableCell>
+                          <TableCell>pUHT</TableCell>
+                          <TableCell>Gamme</TableCell>
+                          <TableCell>Actions</TableCell>
+                      </TableRow>
+                  </TableHead>
+                  <TableBody>
+                      { models.filter(li => li.nom.toLowerCase().includes(searchInput.toLowerCase()))
+                              .map((model, index) => (
+                        
+                          <TableRow key={ model.id }>
+                              <TableCell >{ index + 1 }</TableCell >
+                              <TableCell >{ model.nom }</TableCell >
+                              <TableCell >{ model.description }</TableCell >
+                              <TableCell >{ model.puht } €</TableCell >
+                              <TableCell >{ model.gamme }</TableCell >
+                              <TableCell >
+                                  <Button variant="contained"><Link to={`/edit/${model.id}`} className="button is-small is-info">Edit</Link></Button>
+                                  <Button variant="outlined" color="error" onClick={ () => deleteModel(model.id) }>Delete</Button>
+                              </TableCell>
+                          </TableRow>
+                      )) }
                       
-                        <tr key={ model.id }>
-                            <td>{ index + 1 }</td>
-                            <td>{ model.nom }</td>
-                            <td>{ model.description }</td>
-                            <td>{ model.puht }</td>
-                            <td>{ model.gamme }</td>
-                            <td>
-                                <Link to={`/edit/${model.id}`} className="button is-small is-info">Edit</Link>
-                                <button onClick={ () => deleteModel(model.id) } className="button is-small is-danger">Delete</button>
-                            </td>
-                        </tr>
-                    )) }
-                     
-                </tbody>
-            </table>
+                  </TableBody>
+              </Table>
+            </TableContainer>
         </div>
   )
 }

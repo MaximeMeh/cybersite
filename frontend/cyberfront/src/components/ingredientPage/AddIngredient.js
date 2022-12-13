@@ -4,29 +4,25 @@ import { useNavigate } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 import Header from '../header/Header';
  
-const AddModel = () => {
+const AddIngredient = () => {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
-    const [puht, setPuht] = useState('');
-    const [gamme, setGamme] = useState('');
     const navigate = useNavigate();
  
-    const saveModel = async (e) => {
+    const saveIngr = async (e) => {
         e.preventDefault();
-        await axios.post(process.env.REACT_APP_URL_MODELS,{
+        await axios.post(process.env.REACT_APP_URL_INGREDIENTS,{
             nom: name,
-            description: desc,
-            puht: parseFloat(puht),
-            gamme: gamme
+            description: desc
         });
-        navigate("/modeles");
+        navigate("/ingredients");
     }
  
     return (
         <div>
             <Header/>
             <h2>Ajouter</h2>
-            <form onSubmit={ saveModel }>
+            <form onSubmit={ saveIngr }>
                 <div className="field">
                     <label className="label">Nom</label>
                     <TextField variant='standard' size="small" 
@@ -50,29 +46,6 @@ const AddModel = () => {
                         onChange={ (e) => setDesc(e.target.value) }
                     />
                 </div>
-
-                <div className="field">
-                    <label className="label">pUHT</label>
-                    <TextField variant='standard' size="small" 
-                        className="input"
-                        type="float"
-                        placeholder="Prix Unitaire Hors Taxe"
-                        value={ puht }
-                        onChange={ (e) => setPuht(e.target.value) }
-                    />
-                </div>
-
-                <div className="field">
-                    <label className="label">Gamme: </label>
-                    <TextField variant='standard' size="small"
-                        className="input"
-                        required
-                        type="text"
-                        placeholder="Gamme"
-                        value={ gamme }
-                        onChange={ (e) => setGamme(e.target.value) }
-                    />
-                </div>
                 <br/>
                 <div className="field">
                     <Button variant='contained' type='submit'>Enregistrer</Button>
@@ -82,4 +55,4 @@ const AddModel = () => {
     )
 }
  
-export default AddModel
+export default AddIngredient

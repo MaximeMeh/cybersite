@@ -1,25 +1,44 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import Header from '../header/Header'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '', // required
     password: '' // required
-})
+  });
+  const [error, setError] = useState();
 
-function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault()
-    fetch(process.env.REACT_APP_URL_USERS, {
-        method: 'POST',
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify(formData)
+    axios.post(process.env.REACT_APP_URL_USERS, {...formData})
+    .then((res) => {
+      localStorage.setItem('token', true);
+      
+      localStorage.setItem('role', res.data.user.role);
+      console.log(res.data.user.role);
+      if(localStorage.getItem('role') === 'admin'){
+        navigate('/modeles');
+      }
+      if(localStorage.getItem('role') === 'rd'){
+        navigate('/ingredients');
+      }
+      
+      // Redirect to the appropriate route depending on the user role
+      // if(res.data.user.role === 'test')
+      //   console.log("test");
     })
-    .then(res => res.json())
-    .then(data => console.log(data.user))
-    .catch(err => err)
-
+    .catch(err => {
+      console.log(err);
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      setError('Email et/ou mot de passe incorrect(s)');
+    })
 }
 
 function handleChange(e) {
@@ -31,18 +50,19 @@ function handleChange(e) {
       <Header/>
       <div className="login-wrapper">
 
-      <h2>Connexion</h2>
+        <h2>Connexion</h2>
 
-      <form onSubmit={e => handleSubmit(e)}>
-          <TextField size="small" label='Email' type='text' placeholder='Email' value={formData.email} name='email' onChange={e => handleChange(e)} ></TextField>
-          
-          <TextField size="small" label='Mot de passe' type='text' placeholder='Password' value={formData.password} name='password' onChange={e => handleChange(e)} ></TextField>
-
-        <div>
-          <Button variant='contained' type="submit">Login</Button>
-        </div>
-      </form>
-    </div>
+        <form onSubmit={e => handleSubmit(e)}>
+            <div><TextField size="small" label='Email' type='text' placeholder='Email' value={formData.email} name='email' onChange={e => handleChange(e)} /></div>
+            <br/>
+            <div><TextField size="small" label='Mot de passe' type='text' placeholder='Password' value={formData.password} name='password' onChange={e => handleChange(e)} /></div>
+            <br/>
+          <div>
+            <Button variant='contained' type="submit">Connexion</Button>
+          </div>
+          {error?<h5 style={{'color': 'red'}}>{error}</h5>:null} 
+        </form>
+      </div>
     </>
   )
 }

@@ -4,33 +4,27 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 import Header from '../header/Header';
  
-const EditModel = () => {
+const EditIngredient = () => {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
-    const [puht, setPuht] = useState('');
-    const [gamme, setGamme] = useState('');
 
     const navigate = useNavigate();
     const { id } = useParams();
  
-    const updateProduct = async (e) => {
+    const updateIngredient = async (e) => {
         e.preventDefault();
-        await axios.patch(process.env.REACT_APP_URL_MODELS+`/${id}`,{
+        await axios.patch(process.env.REACT_APP_URL_INGREDIENTS+`/${id}`,{
             nom: name,
-            description: desc,
-            puht: parseFloat(puht),
-            gamme: gamme
+            description: desc
         });
-        navigate("/modeles");
+        navigate("/ingredients");
     }
  
     useEffect(() => {
         const getModelById = async () => {
-            const response = await axios.get(process.env.REACT_APP_URL_MODELS+`/${id}`);
+            const response = await axios.get(process.env.REACT_APP_URL_INGREDIENTS+`/${id}`);
             setName(response.data.nom);
             setDesc(response.data.description);
-            setPuht(response.data.puht);
-            setGamme(response.data.gamme);
         }
         getModelById();
     }, [id]);
@@ -39,7 +33,7 @@ const EditModel = () => {
         <div>
             <Header/>
             <h2>Éditer</h2>
-            <form onSubmit={ updateProduct }>
+            <form onSubmit={ updateIngredient }>
                 <div className="field">
                     <label className="label">Nom</label>
                     <TextField variant='standard' size="small" 
@@ -61,28 +55,6 @@ const EditModel = () => {
                         onChange={ (e) => setDesc(e.target.value) }
                     />
                 </div>
-
-                <div className="field">
-                    <label className="label">pUHT</label>
-                    <TextField variant='standard' size="small" 
-                        className="input"
-                        type="float"
-                        placeholder="Prix Unitaire Hors Taxe"
-                        value={ puht }
-                        onChange={ (e) => setPuht(e.target.value) }
-                    />
-                </div>
-
-                <div className="field">
-                    <label className="label">Gamme</label>
-                    <TextField variant='standard' size="small" 
-                        className="input"
-                        type="text"
-                        placeholder="Gamme"
-                        value={ gamme }
-                        onChange={ (e) => setGamme(e.target.value) }
-                    />
-                </div>
  
                 <div className="field">
                     <Button variant='contained' type='submit'>Changer</Button>
@@ -92,4 +64,4 @@ const EditModel = () => {
     )
 }
  
-export default EditModel
+export default EditIngredient

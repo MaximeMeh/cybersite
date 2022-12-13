@@ -4,7 +4,9 @@ const assert = require('assert');
 
 dotenv.config();
 
-const {PORT, HOST, HOST_URL, SQL_USER, SQL_PASSWORD, SQL_DATABASE, SQL_SERVER, SQL_ENCRYPT} = process.env;
+const {PORT, HOST, HOST_URL, SQL_USER, SQL_PASSWORD, SQL_DATABASE, SQL_SERVER} = process.env;
+
+const sqlEncrypt = process.env.ENCRYPT === "true";
 
 assert(PORT, 'PORT is required');
 assert(HOST, 'PORT is required');
@@ -20,7 +22,7 @@ module.exports = {
         password: SQL_PASSWORD,
         option: {
             trustedConnection: true,
-            encrypt: false,
+            encrypt: sqlEncrypt,
             enableArithAbort: true,
             trustServerCertificate: true,
         }

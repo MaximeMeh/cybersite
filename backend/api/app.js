@@ -47,9 +47,9 @@ app.use(bodyParser.json());
 
 // app.listen(config.port, () => console.log('Server is listening on http://localhost:' + config.port));
 
-app.use('/api', freezbeRoutes.routes);
+// app.use('/api', freezbeRoutes.routes);
 
-app.listen(config.port, () => console.log('Server is listening on http://localhost:' + config.port));
+// app.listen(config.port, () => console.log('Server is listening on http://localhost:' + config.port));
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 

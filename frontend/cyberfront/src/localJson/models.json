@@ -1,0 +1,11 @@
+{
+  "models": [
+    {
+      "nom": "Disque rouge",
+      "description": "Un modele  ",
+      "id": 1,
+      "puht": 6.56,
+      "gamme": "Basique"
+    }
+  ]
+}

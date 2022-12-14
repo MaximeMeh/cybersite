@@ -1,0 +1,16 @@
+{
+  "ingredients": [
+    {
+      "nom": "Plastique",
+      "description": "Du plastique pour la conception",
+      "gramme": 2.101,
+      "id": 2
+    },
+    {
+      "nom": "Colorant",
+      "description": "Du colorant",
+      "gramme": 0.101,
+      "id": 3
+    }
+  ]
+}

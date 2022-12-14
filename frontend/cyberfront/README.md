@@ -43,4 +43,4 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 json-server user.json -m ..\..\node_modules\json-server-auth --port 8080\
 json-server modeles.json -m ..\..\node_modules\json-server-auth --port 8081\
 json-server ingredients.json -m ..\..\node_modules\json-server-auth --port 8082\
-json-server procedes.json -m ..\..\node_modules\json-server-auth --port 8083\
+json-server procedes.json -m ..\..\node_modules\json-server-auth --port 8083

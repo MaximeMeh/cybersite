@@ -7,7 +7,7 @@ dotenv.config();
 const {PORT, HOST, HOST_URL, SQL_USER, SQL_PASSWORD, SQL_DATABASE, SQL_SERVER} = process.env;
 
 const sqlEncrypt = process.env.ENCRYPT === "true";
-const sqlCertificate = process.env.
+// const sqlCertificate = process.env.
 
 assert(PORT, 'PORT is required');
 assert(HOST, 'PORT is required');

@@ -13,7 +13,8 @@ module.exports = {
     },
     dialectOptions: {
       options: { 
-        encrypt: true
+        encrypt: true,
+        trustServerCertificate: true,
       }
     }
   };

@@ -6,7 +6,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.title) {
+    if (!req.body.freezbeName) {
         res.status(400).send({
           message: "Content can not be empty!"
         });
@@ -17,7 +17,7 @@ exports.create = (req, res) => {
     const freezbe = {
         freezbeName: req.body.freezbeName,
         freezbeDescription: req.body.freezbeDescription,
-        puht: req.body.description,
+        puht: req.body.puht,
         freezbeRange: req.body.freezbeRange,
     };
 
@@ -30,7 +30,7 @@ exports.create = (req, res) => {
         .catch(err => {
           res.status(500).send({
               message:
-              err.message || "Some error occurred while creating the Tutorial."
+              err.message || "Some error occurred while creating the TAMERLAPUTE."
         });
         });
 };

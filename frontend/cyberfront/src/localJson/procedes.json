@@ -1,0 +1,16 @@
+{
+  "procedes": [
+    {
+      "nom": "Moulage",
+      "description": "Création à partir du moule",
+      "test": "Oui",
+      "id": 1
+    },
+    {
+      "nom": "Peinture",
+      "description": "Coloration de l'objet",
+      "test": "Non",
+      "id": 2
+    }
+  ]
+}

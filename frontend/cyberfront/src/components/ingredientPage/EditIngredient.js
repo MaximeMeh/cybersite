@@ -7,6 +7,7 @@ import Header from '../header/Header';
 const EditIngredient = () => {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
+    const [gram, setGram] = useState('');
 
     const navigate = useNavigate();
     const { id } = useParams();
@@ -15,7 +16,8 @@ const EditIngredient = () => {
         e.preventDefault();
         await axios.patch(process.env.REACT_APP_URL_INGREDIENTS+`/${id}`,{
             nom: name,
-            description: desc
+            description: desc,
+            gram: parseFloat(gram)
         });
         navigate("/ingredients");
     }
@@ -25,6 +27,7 @@ const EditIngredient = () => {
             const response = await axios.get(process.env.REACT_APP_URL_INGREDIENTS+`/${id}`);
             setName(response.data.nom);
             setDesc(response.data.description);
+            setGram(response.data.gramme);
         }
         getModelById();
     }, [id]);
@@ -53,6 +56,17 @@ const EditIngredient = () => {
                         placeholder="Description"
                         value={ desc }
                         onChange={ (e) => setDesc(e.target.value) }
+                    />
+                </div>
+
+                <div className="field">
+                    <label className="label">Grammage</label>
+                    <TextField variant='standard' size="small" 
+                        className="input"
+                        type="float"
+                        placeholder="Grammage"
+                        value={ gram }
+                        onChange={ (e) => setGram(e.target.value) }
                     />
                 </div>
  

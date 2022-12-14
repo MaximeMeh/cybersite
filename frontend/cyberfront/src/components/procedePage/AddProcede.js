@@ -1,30 +1,31 @@
 import { useState } from 'react'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField } from '@mui/material';
+import { Button, MenuItem, Select, TextField } from '@mui/material';
 import Header from '../header/Header';
  
-const AddIngredient = () => {
+const AddProcede = () => {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
-    const [gram, setGram] = useState('');
+    const [test, setTest] = useState('');
+    
     const navigate = useNavigate();
  
-    const saveIngr = async (e) => {
+    const savePro = async (e) => {
         e.preventDefault();
-        await axios.post(process.env.REACT_APP_URL_INGREDIENTS,{
+        await axios.post(process.env.REACT_APP_URL_PROCEDES,{
             nom: name,
             description: desc,
-            gramme: parseFloat(gram)
+            test: test
         });
-        navigate("/ingredients");
+        navigate("/procedes");
     }
  
     return (
         <div>
             <Header/>
             <h2>Ajouter</h2>
-            <form onSubmit={ saveIngr }>
+            <form onSubmit={ savePro }>
                 <div className="field">
                     <label className="label">Nom</label>
                     <TextField variant='standard' size="small" 
@@ -50,15 +51,16 @@ const AddIngredient = () => {
                 </div>
 
                 <div className="field">
-                    <label className="label">Grammage</label>
-                    <TextField variant='standard' size="small" 
+                    <label className="label">Test</label>
+                    <Select variant='standard' size="small" 
                         className="input"
-                        required
-                        type="float"
-                        placeholder="Grammage"
-                        value={ gram }
-                        onChange={ (e) => setGram(e.target.value) }
-                    />
+                        placeholder="Test"
+                        value={ test }
+                        onChange={ (e) => setTest(e.target.value) }>
+                    
+                        <MenuItem value={'Oui'}>Oui</MenuItem>
+                        <MenuItem value={'Non'}>Non</MenuItem>
+                    </Select>
                 </div>
                 <br/>
                 <div className="field">
@@ -69,4 +71,4 @@ const AddIngredient = () => {
     )
 }
  
-export default AddIngredient
+export default AddProcede

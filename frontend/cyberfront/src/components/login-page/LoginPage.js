@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react'
+import { React, useState } from 'react'
 import Header from '../header/Header'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -18,24 +18,22 @@ function LoginPage() {
     e.preventDefault()
     axios.post(process.env.REACT_APP_URL_USERS, {...formData})
     .then((res) => {
-      localStorage.setItem('token', true);
       
       localStorage.setItem('role', res.data.user.role);
       console.log(res.data.user.role);
+      // Redirect to the appropriate route depending on the user role
       if(localStorage.getItem('role') === 'admin'){
         navigate('/modeles');
       }
       if(localStorage.getItem('role') === 'rd'){
         navigate('/ingredients');
       }
-      
-      // Redirect to the appropriate route depending on the user role
-      // if(res.data.user.role === 'test')
-      //   console.log("test");
+      if(localStorage.getItem('role') === 'pro'){
+        navigate('/procedes');
+      }
     })
     .catch(err => {
       console.log(err);
-      localStorage.removeItem('token');
       localStorage.removeItem('role');
       setError('Email et/ou mot de passe incorrect(s)');
     })

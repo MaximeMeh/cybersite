@@ -13,6 +13,13 @@
       "username": "Jean",
       "role": "rd",
       "id": 2
+    },
+    {
+      "email": "fernand.narcisse@gmail.com",
+      "password": "$2a$10$ClJQohC1863tLayuGV9yruhqaJ74FQHUzCodsFe2xSjaOiFQD4tX.",
+      "username": "Fernand",
+      "role": "pro",
+      "id": 3
     }
   ]
 }

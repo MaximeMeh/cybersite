@@ -14,26 +14,24 @@ import Paper from '@mui/material/Paper';
 import { Button, TextField  } from "@mui/material";
 
 
-function IngredientPageList() {
+function ProcedePageList() {
 
-    // const navigate = useNavigate;
-
-    const [ingredients, setIngredients] = useState([]);
+    const [procedes, setProcedes] = useState([]);
     const [searchInput, setSearchInput] = useState("");
   
     useEffect(() => {
-      getIngredients();
+      getProcedes();
     }, []);
 
-    const getIngredients = async () => {
-      const response = await axios.get(process.env.REACT_APP_URL_INGREDIENTS);
+    const getProcedes = async () => {
+      const response = await axios.get(process.env.REACT_APP_URL_PROCEDES);
 
-      setIngredients(response.data);
+      setProcedes(response.data);
     };
 
-    const deleteIngredient = async (id) => {
-      await axios.delete(process.env.REACT_APP_URL_INGREDIENTS+`/${id}`);
-      getIngredients();
+    const deleteProcede = async (id) => {
+      await axios.delete(process.env.REACT_APP_URL_PROCEDES+`/${id}`);
+      getProcedes();
     }
 
     const handleChange = (e) => {
@@ -42,8 +40,8 @@ function IngredientPageList() {
     };
     
     if (searchInput.length > 0) {
-        ingredients.filter((ingredient) => {
-        return ingredient.nom.match(searchInput);
+        procedes.filter((procede) => {
+        return procede.nom.match(searchInput);
     });
     }
 
@@ -54,11 +52,11 @@ function IngredientPageList() {
       <TextField 
         variant="standard"
         type="search"
-        placeholder="Nom de l'ingrédient"
+        placeholder="Nom du procédé"
         onChange={handleChange}
         value={searchInput} />
         
-        <Button variant="contained"><Link to="/addIngredient" className="button is-primary mt-2">Ajouter</Link></Button>
+        <Button variant="contained"><Link to="/addProcede" className="button is-primary mt-2">Ajouter</Link></Button>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
@@ -66,21 +64,21 @@ function IngredientPageList() {
                           <TableCell>No</TableCell>
                           <TableCell>Nom</TableCell>
                           <TableCell>Description</TableCell>
-                          <TableCell>Grammage</TableCell>
+                          <TableCell>Test</TableCell>
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                      { ingredients.filter(li => li.nom.toLowerCase().includes(searchInput.toLowerCase()))
-                              .map((ingredient, index) => (
+                      { procedes.filter(li => li.nom.toLowerCase().includes(searchInput.toLowerCase()))
+                              .map((procede, index) => (
                         
-                          <TableRow key={ ingredient.id }>
+                          <TableRow key={ procede.id }>
                               <TableCell >{ index + 1 }</TableCell >
-                              <TableCell >{ ingredient.nom }</TableCell >
-                              <TableCell >{ ingredient.description }</TableCell >
-                              <TableCell >{ ingredient.gramme }</TableCell >
+                              <TableCell >{ procede.nom }</TableCell >
+                              <TableCell >{ procede.description }</TableCell >
+                              <TableCell >{ procede.test }</TableCell >
                               <TableCell >
-                                  <Button variant="contained"><Link to={`/editIngredient/${ingredient.id}`} className="button is-small is-info">Éditer</Link></Button>
-                                  <Button variant="outlined" color="error" onClick={ () => deleteIngredient(ingredient.id) }>Supprimer</Button>
+                                  <Button variant="contained"><Link to={`/editProcede/${procede.id}`} className="button is-small is-info">Éditer</Link></Button>
+                                  <Button variant="outlined" color="error" onClick={ () => deleteProcede(procede.id) }>Supprimer</Button>
                               </TableCell>
                           </TableRow>
                       )) }
@@ -92,4 +90,4 @@ function IngredientPageList() {
   )
 }
 
-export default IngredientPageList
+export default ProcedePageList

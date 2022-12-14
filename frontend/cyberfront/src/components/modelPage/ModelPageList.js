@@ -82,7 +82,7 @@ function ModelPageList() {
                               <TableCell >{ model.puht } €</TableCell >
                               <TableCell >{ model.gamme }</TableCell >
                               <TableCell >
-                                  <Button variant="contained"><Link to={`/edit/${model.id}`} className="button is-small is-info">Éditer</Link></Button>
+                                  <Button variant="contained"><Link to={`/editModel/${model.id}`} className="button is-small is-info">Éditer</Link></Button>
                                   <Button variant="outlined" color="error" onClick={ () => deleteModel(model.id) }>Supprimer</Button>
                               </TableCell>
                           </TableRow>

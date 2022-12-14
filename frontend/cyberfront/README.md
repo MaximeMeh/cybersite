@@ -40,7 +40,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ### JSON SERVER COMMANDS
-json-server user.json -m ..\..\node_modules\json-server-auth --port 8080
-json-server modeles.json -m ..\..\node_modules\json-server-auth --port 8081
-json-server ingredients.json -m ..\..\node_modules\json-server-auth --port 8082
-json-server procedes.json -m ..\..\node_modules\json-server-auth --port 8083
+json-server user.json -m ..\..\node_modules\json-server-auth --port 8080\
+json-server modeles.json -m ..\..\node_modules\json-server-auth --port 8081\
+json-server ingredients.json -m ..\..\node_modules\json-server-auth --port 8082\
+json-server procedes.json -m ..\..\node_modules\json-server-auth --port 8083\

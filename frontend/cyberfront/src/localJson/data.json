@@ -1,0 +1,63 @@
+{
+  "users": [
+    {
+      "email": "jacques.dorothee@gmail.com",
+      "password": "$2a$10$6I0IGTerGTRiRBwZs7l2huGZb6aYQltsGEvpCvneApubh2vcZTn4e",
+      "username": "Jacques",
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "email": "jean.poire@gmail.com",
+      "password": "$2a$10$hKkEyMkI7pUvoJ78OU1R7.HKoBKuEhNeuGkVUEtaNCXCAQgB59ltG",
+      "username": "Jean",
+      "role": "rd",
+      "id": 2
+    },
+    {
+      "email": "fernand.narcisse@gmail.com",
+      "password": "$2a$10$ClJQohC1863tLayuGV9yruhqaJ74FQHUzCodsFe2xSjaOiFQD4tX.",
+      "username": "Fernand",
+      "role": "pro",
+      "id": 3
+    }
+  ],
+  "procedes": [
+    {
+      "nom": "Moulage",
+      "description": "Création à partir du moule",
+      "test": "Oui",
+      "id": 1
+    },
+    {
+      "nom": "Peinture",
+      "description": "Coloration de l'objet",
+      "test": "Non",
+      "id": 2
+    }
+  ],
+  "ingredients": [
+    {
+      "nom": "Plastique",
+      "description": "Du plastique pour la conception",
+      "gramme": 2.101,
+      "id": 2
+    },
+    {
+      "nom": "Colorant",
+      "description": "Du colorant",
+      "gramme": 0.101,
+      "id": 3
+    }
+  ],
+  "models": [
+    {
+      "nom": "Disque rouge",
+      "description": "Un modele  ",
+      "id": 1,
+      "puht": 6.56,
+      "gamme": "Basique"
+    }
+  ]
+
+}

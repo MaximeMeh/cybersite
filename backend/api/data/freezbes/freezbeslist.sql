@@ -1,6 +1,0 @@
-SELECT [freezbeId]
-      ,[freezbeName]
-      ,[freezbeDescription]
-      ,[puht]
-      ,[freezbeRange]
-  FROM [dbo].[freezbes]

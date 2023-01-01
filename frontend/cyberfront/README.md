@@ -71,7 +71,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### JSON SERVER COMMANDS
 
-json-server user.json -m ../../node_modules/json-server-auth --port 8080\
+json-server data.json -m ../../node_modules/json-server-auth --port 8080
+<!-- json-server user.json -m ../../node_modules/json-server-auth --port 8080\
 json-server modeles.json -m ../../node_modules/json-server-auth --port 8081\
 json-server ingredients.json -m ../../node_modules/json-server-auth --port 8082\
-json-server procedes.json -m ../../node_modules/json-server-auth --port 8083
+json-server procedes.json -m ../../node_modules/json-server-auth --port 8083 -->

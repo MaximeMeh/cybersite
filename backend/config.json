@@ -1,0 +1,17 @@
+﻿{
+    "dbName": "cybersite_db",
+    "dbConfig": {
+        "server": "localhost",
+        "options": {
+            "port": 1433,
+            "trustServerCertificate": true
+        },
+        "authentication": {
+            "type": "default",
+            "options": {
+                "userName": "max",
+                "password": "Azerty123"
+            }
+        }
+    }
+}

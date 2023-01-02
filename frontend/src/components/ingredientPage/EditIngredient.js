@@ -15,9 +15,9 @@ const EditIngredient = () => {
     const updateIngredient = async (e) => {
         e.preventDefault();
         await axios.patch(process.env.REACT_APP_URL_INGREDIENTS+`/${id}`,{
-            nom: name,
-            description: desc,
-            gram: parseFloat(gram)
+            ingredientName: name,
+            ingredientDescription: desc,
+            grammage: parseFloat(gram)
         });
         navigate("/ingredients");
     }
@@ -25,9 +25,9 @@ const EditIngredient = () => {
     useEffect(() => {
         const getModelById = async () => {
             const response = await axios.get(process.env.REACT_APP_URL_INGREDIENTS+`/${id}`);
-            setName(response.data.nom);
-            setDesc(response.data.description);
-            setGram(response.data.gramme);
+            setName(response.data.ingredientName);
+            setDesc(response.data.ingredientDescription);
+            setGram(response.data.grammage);
         }
         getModelById();
     }, [id]);

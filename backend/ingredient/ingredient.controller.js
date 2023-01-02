@@ -10,7 +10,7 @@ const ingredientService = require('./ingredient.service');
 router.get('/', getAll);
 router.get('/:id', getById);
 router.post('/', createSchema, create);
-router.put('/:id', updateSchema, update);
+router.patch('/:id', updateSchema, update);
 router.delete('/:id', _delete);
 
 module.exports = router;
@@ -53,7 +53,7 @@ function createSchema(req, res, next) {
     const schema = Joi.object({
         ingredientName: Joi.string().required(),
         ingredientDescription: Joi.string().required(),
-        grammage: Joi.float().required()
+        grammage: Joi.number().required()
     });
     validateRequest(req, next, schema);
 }
@@ -62,7 +62,7 @@ function updateSchema(req, res, next) {
     const schema = Joi.object({
         ingredientName: Joi.string().empty(''),
         ingredientDescription: Joi.string().empty(''),
-        grammage: Joi.float().empty('')
+        grammage: Joi.number().empty('')
 
     })
     validateRequest(req, next, schema);

@@ -13,9 +13,9 @@ const AddIngredient = () => {
     const saveIngr = async (e) => {
         e.preventDefault();
         await axios.post(process.env.REACT_APP_URL_INGREDIENTS,{
-            nom: name,
-            description: desc,
-            gramme: parseFloat(gram)
+            ingredientName: name,
+            ingredientDescription: desc,
+            grammage: parseFloat(gram)
         });
         navigate("/ingredients");
     }

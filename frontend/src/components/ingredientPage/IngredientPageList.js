@@ -43,7 +43,7 @@ function IngredientPageList() {
     
     if (searchInput.length > 0) {
         ingredients.filter((ingredient) => {
-        return ingredient.nom.match(searchInput);
+        return ingredient.ingredientName.match(searchInput);
     });
     }
 
@@ -70,14 +70,14 @@ function IngredientPageList() {
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                      { ingredients.filter(li => li.nom.toLowerCase().includes(searchInput.toLowerCase()))
+                      { ingredients.filter(li => li.ingredientName.toLowerCase().includes(searchInput.toLowerCase()))
                               .map((ingredient, index) => (
                         
                           <TableRow key={ ingredient.id }>
                               <TableCell >{ index + 1 }</TableCell >
-                              <TableCell >{ ingredient.nom }</TableCell >
-                              <TableCell >{ ingredient.description }</TableCell >
-                              <TableCell >{ ingredient.gramme }</TableCell >
+                              <TableCell >{ ingredient.ingredientName }</TableCell >
+                              <TableCell >{ ingredient.ingredientDescription }</TableCell >
+                              <TableCell >{ ingredient.grammage }</TableCell >
                               <TableCell >
                                   <Button variant="contained"><Link to={`/editIngredient/${ingredient.id}`} className="button is-small is-info">Éditer</Link></Button>
                                   <Button variant="outlined" color="error" onClick={ () => deleteIngredient(ingredient.id) }>Supprimer</Button>

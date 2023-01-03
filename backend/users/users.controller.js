@@ -21,14 +21,15 @@ module.exports = router;
 function authenticateSchema(req, res, next) {
     const schema = Joi.object({
         email: Joi.string().required(),
-        passwordHash: Joi.string().required()
+        password: Joi.string().required()
     });
     validateRequest(req, next, schema);
 }
 
 function authenticate(req, res, next) {
+    console.log(req.body)
     userService.authenticate(req.body)
-        .then(users => res.json(users))
+        .then(user => res.json(user))
         .catch(next);
 }
 

@@ -16,12 +16,13 @@ function LoginPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    
     axios
       .post(process.env.REACT_APP_URL_USERS, { ...formData })
       .then((res) => {
-        console.log(res.data)
-        localStorage.setItem("role", res.data.user.role);
-        console.log(res.data.user.role);
+        console.log(res.data.role);
+        localStorage.setItem("role", res.data.role);
+        
         // Redirect to the appropriate route depending on the user role
         if (localStorage.getItem("role") === "User") {
           navigate("/modeles");

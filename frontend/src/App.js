@@ -17,9 +17,8 @@ import EditProcede from './components/procedePage/EditProcede';
 const AnonymousGuard = ({component : Component, ...props}) =>{
 
   const role = localStorage.getItem('role');
-  console.log(role);
   switch(role){
-    case 'admin':
+    case 'User':
       return  <Navigate to='/modeles'/>;
     case 'rd':
       return <Navigate to='/ingredients'/>;
@@ -34,7 +33,7 @@ const AnonymousGuard = ({component : Component, ...props}) =>{
 const AdminGuard = ({component : Component, ...props}) =>{
 
   const role = localStorage.getItem('role');
-  if(role==='admin'){
+  if(role==='User'){
     return <Component {...props} />;
   } else {
     return <Navigate to='/login'/>;

@@ -1,37 +1,49 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 import Header from '../header/Header';
  
-const AddModel = () => {
+const EditModel = () => {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
     const [puht, setPuht] = useState('');
     const [gamme, setGamme] = useState('');
+
     const navigate = useNavigate();
+    const { id } = useParams();
  
-    const saveModel = async (e) => {
+    const updateProduct = async (e) => {
         e.preventDefault();
-        await axios.post(process.env.REACT_APP_URL_MODELS,{
-            nom: name,
-            description: desc,
+        await axios.patch(process.env.REACT_APP_URL_MODELS+`/${id}`,{
+            freezbeName: name,
+            freezbeDescription: desc,
             puht: parseFloat(puht),
-            gamme: gamme
+            freezbeRange: gamme
         });
         navigate("/modeles");
     }
  
+    useEffect(() => {
+        const getModelById = async () => {
+            const response = await axios.get(process.env.REACT_APP_URL_MODELS+`/${id}`);
+            setName(response.data.freezbeName);
+            setDesc(response.data.freezbeDescription);
+            setPuht(response.data.puht);
+            setGamme(response.data.freezbeRange);
+        }
+        getModelById();
+    }, [id]);
+ 
     return (
         <div>
             <Header/>
-            <h2>Ajouter</h2>
-            <form onSubmit={ saveModel }>
+            <h2>Éditer</h2>
+            <form onSubmit={ updateProduct }>
                 <div className="field">
                     <label className="label">Nom</label>
                     <TextField variant='standard' size="small" 
                         className="input"
-                        required
                         type="text"
                         placeholder="Nom"
                         value={ name }
@@ -43,7 +55,6 @@ const AddModel = () => {
                     <label className="label">Description</label>
                     <TextField variant='standard' size="small" 
                         className="input"
-                        required
                         type="text"
                         placeholder="Description"
                         value={ desc }
@@ -63,23 +74,22 @@ const AddModel = () => {
                 </div>
 
                 <div className="field">
-                    <label className="label">Gamme: </label>
-                    <TextField variant='standard' size="small"
+                    <label className="label">Gamme</label>
+                    <TextField variant='standard' size="small" 
                         className="input"
-                        required
                         type="text"
                         placeholder="Gamme"
                         value={ gamme }
                         onChange={ (e) => setGamme(e.target.value) }
                     />
                 </div>
-                <br/>
+ 
                 <div className="field">
-                    <Button variant='contained' type='submit'>Enregistrer</Button>
+                    <Button variant='contained' type='submit'>Changer</Button>
                 </div>
             </form>
         </div>
     )
 }
  
-export default AddModel
+export default EditModel

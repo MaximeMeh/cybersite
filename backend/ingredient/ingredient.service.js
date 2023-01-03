@@ -26,7 +26,7 @@ async function create(params) {
 
     const ingredient = new db.Ingredient(params);
 
-    // save user
+    // save ingredient
     await ingredient.save();
 }
 
@@ -34,12 +34,12 @@ async function update(id, params) {
     const ingredient = await getIngredient(id);
 
     // validate
-    const ingredientNameChanged = params.ingredientName && user.ingredientName !== params.ingredientName;
+    const ingredientNameChanged = params.ingredientName && params.ingredientName !== params.ingredientName;
     if (ingredientNameChanged && await db.Ingredient.findOne({ where: { ingredientName : params.ingredientName } })) {
         throw 'Ingredient "' + params.ingredientName + '" is already registered';
     }
 
-    // copy params to user and save
+    // copy params to ingredient and save
     Object.assign(ingredient, params);
     await ingredient.save();
 }

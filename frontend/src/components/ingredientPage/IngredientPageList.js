@@ -14,26 +14,26 @@ import Paper from '@mui/material/Paper';
 import { Button, TextField  } from "@mui/material";
 
 
-function ModelPageList() {
+function IngredientPageList() {
 
     // const navigate = useNavigate;
 
-    const [models, setModels] = useState([]);
+    const [ingredients, setIngredients] = useState([]);
     const [searchInput, setSearchInput] = useState("");
   
     useEffect(() => {
-      getModels();
+      getIngredients();
     }, []);
 
-    const getModels = async () => {
-      const response = await axios.get(process.env.REACT_APP_URL_MODELS);
+    const getIngredients = async () => {
+      const response = await axios.get(process.env.REACT_APP_URL_INGREDIENTS);
 
-      setModels(response.data);
+      setIngredients(response.data);
     };
 
-    const deleteModel = async (id) => {
-      await axios.delete(process.env.REACT_APP_URL_MODELS+`/${id}`);
-      getModels();
+    const deleteIngredient = async (id) => {
+      await axios.delete(process.env.REACT_APP_URL_INGREDIENTS+`/${id}`);
+      getIngredients();
     }
 
     const handleChange = (e) => {
@@ -42,8 +42,8 @@ function ModelPageList() {
     };
     
     if (searchInput.length > 0) {
-        models.filter((model) => {
-        return model.nom.match(searchInput);
+        ingredients.filter((ingredient) => {
+        return ingredient.ingredientName.match(searchInput);
     });
     }
 
@@ -54,11 +54,11 @@ function ModelPageList() {
       <TextField 
         variant="standard"
         type="search"
-        placeholder="Nom du modèle"
+        placeholder="Nom de l'ingrédient"
         onChange={handleChange}
         value={searchInput} />
         
-        <Button variant="contained"><Link to="/addModel" className="button is-primary mt-2">Ajouter</Link></Button>
+        <Button variant="contained"><Link to="/addIngredient" className="button is-primary mt-2">Ajouter</Link></Button>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
@@ -66,24 +66,21 @@ function ModelPageList() {
                           <TableCell>No</TableCell>
                           <TableCell>Nom</TableCell>
                           <TableCell>Description</TableCell>
-                          <TableCell>pUHT</TableCell>
-                          <TableCell>Gamme</TableCell>
-                          <TableCell>Actions</TableCell>
+                          <TableCell>Grammage</TableCell>
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                      { models.filter(li => li.nom.toLowerCase().includes(searchInput.toLowerCase()))
-                              .map((model, index) => (
+                      { ingredients.filter(li => li.ingredientName.toLowerCase().includes(searchInput.toLowerCase()))
+                              .map((ingredient, index) => (
                         
-                          <TableRow key={ model.id }>
+                          <TableRow key={ ingredient.id }>
                               <TableCell >{ index + 1 }</TableCell >
-                              <TableCell >{ model.nom }</TableCell >
-                              <TableCell >{ model.description }</TableCell >
-                              <TableCell >{ model.puht } €</TableCell >
-                              <TableCell >{ model.gamme }</TableCell >
+                              <TableCell >{ ingredient.ingredientName }</TableCell >
+                              <TableCell >{ ingredient.ingredientDescription }</TableCell >
+                              <TableCell >{ ingredient.grammage }</TableCell >
                               <TableCell >
-                                  <Button variant="contained"><Link to={`/editModel/${model.id}`} className="button is-small is-info">Éditer</Link></Button>
-                                  <Button variant="outlined" color="error" onClick={ () => deleteModel(model.id) }>Supprimer</Button>
+                                  <Button variant="contained"><Link to={`/editIngredient/${ingredient.id}`} className="button is-small is-info">Éditer</Link></Button>
+                                  <Button variant="outlined" color="error" onClick={ () => deleteIngredient(ingredient.id) }>Supprimer</Button>
                               </TableCell>
                           </TableRow>
                       )) }
@@ -95,4 +92,4 @@ function ModelPageList() {
   )
 }
 
-export default ModelPageList
+export default IngredientPageList

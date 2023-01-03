@@ -24,13 +24,14 @@ module.exports = {
 //         return await user;
 // }
 
-async function authenticate({ email, passwordHash }) {
+async function authenticate({ email, password }) {
     console.log(email);
     const user = await db.User.scope('withHash').findOne({ where: { email } });
 
-    if (!user || !(await bcrypt.compare(passwordHash, user.passwordHash)))
+    if (!user || !(await bcrypt.compare(password, user.passwordHash)))
         throw 'Username or password is incorrect';
-    else throw 'User connected';
+
+    return {...omitHash(user.get())};
 }
 
 

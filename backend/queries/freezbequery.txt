@@ -1,0 +1,18 @@
+USE cybersite_db
+
+CREATE TABLE Freezbes(
+	
+	freezbeName nvarchar(100) NOT NULL,
+	freezbeDescription nvarchar(1500) NOT NULL,
+	puht float NOT NULL,
+	freezbeRange nvarchar(100) NOT NULL,
+	createdAt DATETIMEOFFSET NOT NULL,
+	updatedAt DATETIMEOFFSET
+)
+
+select * from Freezbes
+
+INSERT INTO Freezbes(freezbeName, freezbeDescription, puht, freezbeRange, createdAt, updatedAt)
+VALUES	('mcdo', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s', 20, 'bas de gamme', '2007-05-08 12:35:29.1234567 +12:15', '2007-05-08 12:35:29.1234567 +12:15'),
+		('Alrex', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s', 20, 'pro', '2007-05-08 12:35:29.1234567 +12:15', '2007-05-08 12:35:29.1234567 +12:15'),
+		('Awotre', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s', 20, 'big douts', '2007-05-08 12:35:29.1234567 +12:15', '2007-05-08 12:35:29.1234567 +12:15')

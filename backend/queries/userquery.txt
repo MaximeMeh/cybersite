@@ -1,0 +1,20 @@
+USE cybersite_db
+
+CREATE TABLE Users(
+	
+	firstName nvarchar(100) NOT NULL,
+	lastName nvarchar(100) NOT NULL,
+	email nvarchar(1500) NOT NULL,
+	passwordHash nvarchar(100) NOT NULL,
+	role nvarchar(100) NOT NULL,
+	createdAt DATETIMEOFFSET NOT NULL,
+	updatedAt DATETIMEOFFSET
+)
+
+select * from Users
+
+
+INSERT INTO Users(firstName, lastName, email, passwordHash, role, createdAt, updatedAt)
+VALUES	('George', 'McLaren', 'george@mclaren.com', 'test123',  'User', '2007-05-08 12:35:29.1234567 +12:15', '2007-05-08 12:35:29.1234567 +12:15'),
+		('Alex', 'Costanza', 'alex@costanza.com', 'test123', 'User', '2007-05-08 12:35:29.1234567 +12:15', '2007-05-08 12:35:29.1234567 +12:15'),
+		('Max', 'Lerel', 'max@lerel.com', 'test123', 'User', '2007-05-08 12:35:29.1234567 +12:15', '2007-05-08 12:35:29.1234567 +12:15')

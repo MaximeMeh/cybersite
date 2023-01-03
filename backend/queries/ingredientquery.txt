@@ -1,0 +1,17 @@
+USE cybersite_db
+
+CREATE TABLE Ingredients(
+	
+	ingredientName nvarchar(100) NOT NULL,
+	ingredientDescription nvarchar(1500) NOT NULL,
+	grammage float NOT NULL,
+	createdAt DATETIMEOFFSET NOT NULL,
+	updatedAt DATETIMEOFFSET
+)
+
+select * from Ingredients
+
+INSERT INTO Ingredients(ingredientName, ingredientDescription, grammage, createdAt, updatedAt)
+VALUES	('plastoque', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s', 20, '2007-05-08 12:35:29.1234567 +12:15', '2007-05-08 12:35:29.1234567 +12:15'),
+		('metal', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s', 20, '2007-05-08 12:35:29.1234567 +12:15', '2007-05-08 12:35:29.1234567 +12:15'),
+		('or', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s', 20, '2007-05-08 12:35:29.1234567 +12:15', '2007-05-08 12:35:29.1234567 +12:15')

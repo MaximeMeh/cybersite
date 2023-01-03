@@ -7,7 +7,7 @@ const Role = require('_helpers/role');
 const userService = require('./user.service');
 
 // routes
-
+router.post('/login', authenticateSchema, authenticate);
 router.get('/', getAll);
 router.get('/:id', getById);
 router.post('/', createSchema, create);
@@ -17,6 +17,21 @@ router.delete('/:id', _delete);
 module.exports = router;
 
 // route functions
+
+function authenticateSchema(req, res, next) {
+    const schema = Joi.object({
+        email: Joi.string().required(),
+        passwordHash: Joi.string().required()
+    });
+    validateRequest(req, next, schema);
+}
+
+function authenticate(req, res, next) {
+    userService.authenticate(req.body)
+        .then(users => res.json(users))
+        .catch(next);
+}
+
 
 function getAll(req, res, next) {
     userService.getAll()

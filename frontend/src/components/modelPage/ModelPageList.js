@@ -43,7 +43,7 @@ function ModelPageList() {
     
     if (searchInput.length > 0) {
         models.filter((model) => {
-        return model.nom.match(searchInput);
+        return model.freezbeName.match(searchInput);
     });
     }
 
@@ -72,15 +72,15 @@ function ModelPageList() {
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                      { models.filter(li => li.nom.toLowerCase().includes(searchInput.toLowerCase()))
+                      { models.filter(li => li.freezbeName.toLowerCase().includes(searchInput.toLowerCase()))
                               .map((model, index) => (
                         
                           <TableRow key={ model.id }>
                               <TableCell >{ index + 1 }</TableCell >
-                              <TableCell >{ model.nom }</TableCell >
-                              <TableCell >{ model.description }</TableCell >
+                              <TableCell >{ model.freezbeName }</TableCell >
+                              <TableCell >{ model.freezbeDescription }</TableCell >
                               <TableCell >{ model.puht } €</TableCell >
-                              <TableCell >{ model.gamme }</TableCell >
+                              <TableCell >{ model.freezbeRange }</TableCell >
                               <TableCell >
                                   <Button variant="contained"><Link to={`/editModel/${model.id}`} className="button is-small is-info">Éditer</Link></Button>
                                   <Button variant="outlined" color="error" onClick={ () => deleteModel(model.id) }>Supprimer</Button>

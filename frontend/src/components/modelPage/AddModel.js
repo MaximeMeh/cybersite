@@ -14,10 +14,10 @@ const AddModel = () => {
     const saveModel = async (e) => {
         e.preventDefault();
         await axios.post(process.env.REACT_APP_URL_MODELS,{
-            nom: name,
-            description: desc,
+            freezbeName: name,
+            freezbeDescription: desc,
             puht: parseFloat(puht),
-            gamme: gamme
+            freezbeRange: gamme
         });
         navigate("/modeles");
     }

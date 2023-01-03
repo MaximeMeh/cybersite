@@ -16,10 +16,10 @@ const EditModel = () => {
     const updateProduct = async (e) => {
         e.preventDefault();
         await axios.patch(process.env.REACT_APP_URL_MODELS+`/${id}`,{
-            nom: name,
-            description: desc,
+            freezbeName: name,
+            freezbeDescription: desc,
             puht: parseFloat(puht),
-            gamme: gamme
+            freezbeRange: gamme
         });
         navigate("/modeles");
     }
@@ -27,10 +27,10 @@ const EditModel = () => {
     useEffect(() => {
         const getModelById = async () => {
             const response = await axios.get(process.env.REACT_APP_URL_MODELS+`/${id}`);
-            setName(response.data.nom);
-            setDesc(response.data.description);
+            setName(response.data.freezbeName);
+            setDesc(response.data.freezbeDescription);
             setPuht(response.data.puht);
-            setGamme(response.data.gamme);
+            setGamme(response.data.freezbeRange);
         }
         getModelById();
     }, [id]);

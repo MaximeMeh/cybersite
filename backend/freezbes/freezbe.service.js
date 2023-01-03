@@ -26,7 +26,7 @@ async function create(params) {
 
     const freezbe = new db.Freezbe(params);
 
-    // save user
+    // save freezbe
     await freezbe.save();
 }
 
@@ -34,12 +34,12 @@ async function update(id, params) {
     const freezbe = await getFreezbe(id);
 
     // validate
-    const freezbeNameChanged = params.freezbeName && user.freezbeName !== params.freezbeName;
+    const freezbeNameChanged = params.freezbeName && params.freezbeName !== params.freezbeName;
     if (freezbeNameChanged && await db.Freezbe.findOne({ where: { freezbeName : params.freezbeName } })) {
         throw 'Freezbe "' + params.freezbeName + '" is already registered';
     }
 
-    // copy params to user and save
+    // copy params to freezbe and save
     Object.assign(freezbe, params);
     await freezbe.save();
 }

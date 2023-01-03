@@ -10,7 +10,7 @@ const freezbeService = require('./freezbe.service');
 router.get('/', getAll);
 router.get('/:id', getById);
 router.post('/', createSchema, create);
-router.put('/:id', updateSchema, update);
+router.patch('/:id', updateSchema, update);
 router.delete('/:id', _delete);
 
 module.exports = router;
@@ -53,7 +53,7 @@ function createSchema(req, res, next) {
     const schema = Joi.object({
         freezbeName: Joi.string().required(),
         freezbeDescription: Joi.string().required(),
-        puht: Joi.float().required(),
+        puht: Joi.number().required(),
         freezbeRange: Joi.string().required()
     });
     validateRequest(req, next, schema);
@@ -63,7 +63,7 @@ function updateSchema(req, res, next) {
     const schema = Joi.object({
         freezbeName: Joi.string().empty(''),
         freezbeDescription: Joi.string().empty(''),
-        puht: Joi.float().empty(''),
+        puht: Joi.number().empty(''),
         freezbeRange: Joi.string().empty('')
 
     })

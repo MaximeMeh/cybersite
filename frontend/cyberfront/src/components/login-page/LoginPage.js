@@ -19,10 +19,11 @@ function LoginPage() {
     axios
       .post(process.env.REACT_APP_URL_USERS, { ...formData })
       .then((res) => {
+        console.log(res.data)
         localStorage.setItem("role", res.data.user.role);
         console.log(res.data.user.role);
         // Redirect to the appropriate route depending on the user role
-        if (localStorage.getItem("role") === "admin") {
+        if (localStorage.getItem("role") === "User") {
           navigate("/modeles");
         }
         if (localStorage.getItem("role") === "rd") {
